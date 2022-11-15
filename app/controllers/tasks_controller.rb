@@ -17,11 +17,11 @@ class TasksController < ApplicationController
     @task = Task.new(task_params)
     @task.save
     redirect_to tasks_path
-
   end
 
   def update
-
+    @task.update(task_params)
+    redirect_to task_path(@task)
   end
 
   def show
@@ -30,7 +30,7 @@ class TasksController < ApplicationController
   private
 
   def task_params
-    params.require(:task).permit(:title, :description, :completed)
+    params.require(:task).permit(:title, :details, :completed)
   end
 
   def set_task
